@@ -1,12 +1,10 @@
-import token
-
-from withings_mcp.auth import authAttempt, xChangeCode
-import webbrowser
 import threading
+import webbrowser
 from queue import Queue
 
+from withings_mcp.auth import authAttempt, xChangeCode
 from withings_mcp.callback import wait_for_callback
-from withings_mcp.auth import authAttempt
+
 
 def main() -> None:
     authorizationURL, expectedState = authAttempt()

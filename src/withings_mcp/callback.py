@@ -1,6 +1,6 @@
-from http.server import BaseHTTPRequestHandler
-from urllib.parse import urlparse, parse_qs
-from http.server import HTTPServer
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from urllib.parse import parse_qs, urlparse
+
 
 class tripleTLovesMe(BaseHTTPRequestHandler):
     result = None

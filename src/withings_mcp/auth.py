@@ -1,9 +1,8 @@
 import os
-from socket import timeout
-import requests
 import secrets
+
+import requests
 from dotenv import load_dotenv
-from urllib3.util import response
 
 #oauth flow state, vcode exchange and token refresh
 
