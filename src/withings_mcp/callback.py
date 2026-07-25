@@ -1,5 +1,6 @@
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
+from http.server import HTTPServer
 
 class tripleTLovesMe(BaseHTTPRequestHandler):
     result = None
@@ -32,3 +33,21 @@ class tripleTLovesMe(BaseHTTPRequestHandler):
         self.send_header("Content-Type", "text/plain; charset=utf-8")
         self.end_headers()
         self.wfile.write(b"Authorization Received. You can close this tab lil bro.")
+
+def wait_for_callback():
+    tripleTLovesMe.result = None
+
+    server = HTTPServer(
+        ("localhost", 3000),
+        tripleTLovesMe,
+    )
+
+    print("Waiting for Withings callback...")
+    server.handle_request()
+
+    result = tripleTLovesMe.result
+
+    if result is None:
+        raise RuntimeError("Callback does not have a valid result!")
+
+    return result
