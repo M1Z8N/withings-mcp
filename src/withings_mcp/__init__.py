@@ -1,4 +1,6 @@
-from withings_mcp.auth import authAttempt
+import token
+
+from withings_mcp.auth import authAttempt, xChangeCode
 import webbrowser
 import threading
 from queue import Queue
@@ -34,3 +36,10 @@ def main() -> None:
 
     print("Authorization Code Receivde: ", bool(authorization_code))
     print("OAuth State Matched: ",True)
+
+    tokens = xChangeCode(authorization_code)
+    print("it works!")
+    print("ur id received:", bool(tokens["userid"]))
+    print("access token received:", bool(tokens["access_token"]))
+    print("refresh token received:", bool(tokens["refresh_token"]))
+    print("expires in:", tokens["expires_in"])
